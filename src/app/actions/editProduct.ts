@@ -2,6 +2,7 @@
 import { dbconfig } from "@/db/dbconfig";
 import { products } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function editProduct(formData:FormData,id:number) {
     const {db}= await dbconfig()
@@ -11,7 +12,6 @@ export async function editProduct(formData:FormData,id:number) {
       const imageUrl = formData.get("image_url") as string;
       const initialStock = parseInt(formData.get("initial_stock") as string);
       const availableStock = parseInt(formData.get("available_stock") as string);
-      const categoryId = 2;
 
       
       await db.update(products).set({
@@ -20,6 +20,7 @@ export async function editProduct(formData:FormData,id:number) {
         imageUrl,
         initialStock,
         availableStock,
-        categoryId
       }).where(eq(products.id,id));
+    revalidatePath('/dashboard/allproducts')
+
 }
