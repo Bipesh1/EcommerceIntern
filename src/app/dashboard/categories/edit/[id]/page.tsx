@@ -6,12 +6,13 @@ import React from 'react'
 
 export default async function Edit({params}:{
     params:{
-        id: number
+        id: string
     }
 }) {
     const {id}= await params
+    const categoryId= Number(id)
     const {db}= await dbconfig()
-    const [categoryData]= await db.select().from(categories).where(eq(categories.id,id))
+    const [categoryData]= await db.select().from(categories).where(eq(categories.id,categoryId))
     
     return (
     <Editform category={categoryData}/>

@@ -6,12 +6,13 @@ import React from 'react'
 
 export default async function EditProduct({params}:{
     params:{
-        id: number
+        id: string
     }
 }) {
     const {id}= await params
+    const productId= Number(id)
     const {db}= await dbconfig()
-    const [productData]= await db.select().from(products).where(eq(products.id,id))
+    const [productData]= await db.select().from(products).where(eq(products.id,productId))
     return (
     <EditProductForm product={productData}/>
   )

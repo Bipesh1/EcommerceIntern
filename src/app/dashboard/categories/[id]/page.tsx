@@ -6,13 +6,14 @@ import Link from "next/link";
 import Productcard from "@/components/Productcard";
 export default async function CategoryProducts({params}:{
     params:{
-        id: number
+        id: string
     }
 }
 ){
 const {id}= await params
+const categoryId= Number(id)
 const {db}= await dbconfig()
-const productsList= await db.select().from(products).where(eq(products.categoryId, id))
+const productsList= await db.select().from(products).where(eq(products.categoryId, categoryId))
 console.log(productsList)
 
 return(
