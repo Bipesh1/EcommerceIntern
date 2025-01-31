@@ -1,5 +1,5 @@
 import EditProductForm from '@/components/Editproductform'
-import { dbconfig } from '@/db/initSupabase'
+import { dbconfig } from '@/db/dbconfig'
 import { products} from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import React from 'react'

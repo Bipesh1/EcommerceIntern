@@ -1,4 +1,4 @@
-import { dbconfig } from "@/db/initSupabase";
+import { dbconfig } from "@/db/dbconfig";
 import { categories } from "@/db/schema";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";

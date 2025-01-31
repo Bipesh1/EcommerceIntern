@@ -1,5 +1,5 @@
 "use server";
-import { dbconfig } from "@/db/initSupabase";
+import { dbconfig } from "@/db/dbconfig";
 
 export async function uploadImageToSupabase(image: File) {
   const { supabase } = await dbconfig();

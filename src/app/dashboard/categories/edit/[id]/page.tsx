@@ -1,5 +1,5 @@
 import Editform from '@/components/Editform'
-import { dbconfig } from '@/db/initSupabase'
+import { dbconfig } from '@/db/dbconfig'
 import { categories } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import React from 'react'

@@ -1,5 +1,5 @@
 "use server";
-import { dbconfig } from "@/db/initSupabase";
+import { dbconfig } from "@/db/dbconfig";
 import { products } from "@/db/schema";
 
 export async function createProduct(formData: FormData) {

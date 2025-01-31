@@ -1,5 +1,5 @@
 "use server"
-import { dbconfig } from "@/db/initSupabase";
+import { dbconfig } from "@/db/dbconfig";
 import { categories } from "@/db/schema";
 
 export async function createCategory(formData:FormData) {

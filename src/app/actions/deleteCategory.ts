@@ -1,6 +1,6 @@
 // app/actions/deleteProduct.ts
 "use server"
-import { dbconfig } from "@/db/initSupabase";
+import { dbconfig } from "@/db/dbconfig";
 import { categories } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
