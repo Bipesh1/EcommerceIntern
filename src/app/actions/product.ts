@@ -11,6 +11,7 @@ export async function createProduct(formData: FormData) {
   const initialStock = parseInt(formData.get("initial_stock") as string);
   const availableStock = parseInt(formData.get("available_stock") as string);
   const categoryId = parseInt(formData.get("category_id") as string);
+
   await db.insert(products).values({
     name,
     description,

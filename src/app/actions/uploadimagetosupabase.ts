@@ -3,7 +3,6 @@ import { dbconfig } from "@/db/dbconfig";
 
 export async function uploadImageToSupabase(image: File) {
   const { supabase } = await dbconfig();
- console.log("From products")
   // Upload the image to Supabase Storage
   const { data, error } = await supabase.storage
     .from("images")
@@ -15,6 +14,5 @@ export async function uploadImageToSupabase(image: File) {
 
   // Get the public URL of the image
   const imageUrl = supabase.storage.from("images").getPublicUrl(data.path).data.publicUrl;
-  console.log("From products1")
   return imageUrl;
 }

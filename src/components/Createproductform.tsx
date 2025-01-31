@@ -72,7 +72,7 @@ export default function CreateProductForm({categories}:{
             required
           />
           {/* Category Dropdown */}
-      <Select>
+      <Select name="category_id">
         <SelectTrigger>
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
