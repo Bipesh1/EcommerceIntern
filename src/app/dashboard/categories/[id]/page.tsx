@@ -4,6 +4,8 @@ import { eq } from "drizzle-orm";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Productcard from "@/components/Productcard";
+export const runtime = "nodejs";
+
 export default async function CategoryProducts({params}: {params: Promise<{ id: string }>}
 ){
 

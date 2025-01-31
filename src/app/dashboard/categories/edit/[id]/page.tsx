@@ -4,6 +4,8 @@ import { categories } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import React from 'react'
 
+export const runtime = "nodejs";
+
 export default async function Edit({params}: {params: Promise<{ id: string }>}) {
     const {id}= await params 
     const categoryId= Number(id)
