@@ -4,7 +4,6 @@ import { products} from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import React from 'react'
 
-export const runtime = "nodejs";
 
 export default async function EditProduct({params}: {params: Promise<{ id: string }>}) {
    

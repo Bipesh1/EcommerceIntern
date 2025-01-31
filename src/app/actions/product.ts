@@ -1,6 +1,7 @@
 "use server";
 import { dbconfig } from "@/db/dbconfig";
 import { products } from "@/db/schema";
+import { revalidatePath } from "next/cache";
 
 export async function createProduct(formData: FormData) {
     const {db}= await dbconfig()
@@ -18,4 +19,5 @@ export async function createProduct(formData: FormData) {
     availableStock,
     categoryId,
   });
+  revalidatePath('/dashboard/allproducts')
 }
