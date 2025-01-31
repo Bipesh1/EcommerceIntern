@@ -15,4 +15,3 @@ export default async function CreateProductPage() {
     </Suspense>
   );
 }
-export const dynamic = 'force-dynamic'
