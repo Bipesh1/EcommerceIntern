@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { uploadImageToSupabase } from "@/app/actions/uploadimagetosupabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,29 +24,30 @@ export default function EditProductForm({
   const [description, setDescription] = useState<string>(product.description); // Pre-fill with current description
   const [initialStock, setInitialStock] = useState<number>(product.initialStock); // Pre-fill with current initial stock
   const [availableStock, setAvailableStock] = useState<number>(product.availableStock); // Pre-fill with current available stock
-
-  const handleSubmit = async () => {
-
-    try {
-      const formData = new FormData();
-      formData.set("name", name);
-      formData.set("description", description);
-      formData.set("initial_stock", initialStock.toString());
-      formData.set("available_stock", availableStock.toString());
-
-      // If a new image is selected, upload it and add it to the form data
-      if (image) {
-        const imageUrl = await uploadImageToSupabase(image);
-        formData.set("image_url", imageUrl);
-      } else {
-        formData.set("image_url", product.imageUrl); // Keep the old image URL if no new image is selected
+  const [isPending,startTransition]= useTransition()
+  const handleSubmit = (formData:FormData) => {
+    startTransition(async()=>{
+      try {
+        formData.set("name", name);
+        formData.set("description", description);
+        formData.set("initial_stock", initialStock.toString());
+        formData.set("available_stock", availableStock.toString());
+  
+        // If a new image is selected, upload it and add it to the form data
+        if (image) {
+          const imageUrl = await uploadImageToSupabase(image);
+          formData.set("image_url", imageUrl);
+        } else {
+          formData.set("image_url", product.imageUrl); // Keep the old image URL if no new image is selected
+        }
+  
+        // Calling the server action for product
+        await editProduct(formData, product.id);
+      } catch (error) {
+        console.error("Error:", error);
       }
-
-      // Calling the server action for product
-      await editProduct(formData, product.id);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    })
+    
   };
 
   return (
@@ -54,7 +55,7 @@ export default function EditProductForm({
       <h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">
         Edit Product
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-lg w-full">
+      <form action={handleSubmit} className="space-y-4 max-w-lg w-full">
         {/* Product Name */}
         <Input
           name="name"
@@ -114,7 +115,7 @@ export default function EditProductForm({
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 shadow-md"
           type="submit"
         >
-          Update Product
+          {isPending?"Updating...":"Update Product"}
         </Button>
       </form>
     </div>

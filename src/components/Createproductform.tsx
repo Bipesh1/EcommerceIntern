@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { createProduct } from "@/app/actions/product";
 import { uploadImageToSupabase } from "@/app/actions/uploadimagetosupabase";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,19 +16,23 @@ export default function CreateProductForm({categories}:{
    
      const [image, setImage] = useState<File | null>(null);
      const [selectedcategory,setSelectedCategory]=useState<string>("")
+     const [isPending,startTransition]= useTransition()
 
-      const handleSubmit = async (formData: FormData) => {
-        try {
-          if (image) {
-            const imageUrl = await uploadImageToSupabase(image);
-            formData.set("image_url", imageUrl);
+      const handleSubmit = (formData: FormData) => {
+        startTransition(async()=>{
+          try {
+            if (image) {
+              const imageUrl = await uploadImageToSupabase(image);
+              formData.set("image_url", imageUrl);
+            }
+      
+            // Calling the server action for product
+            await createProduct(formData);
+          } catch (error) {
+            console.error("Error:", error);
           }
-    
-          // Calling the server action for product
-          await createProduct(formData);
-        } catch (error) {
-          console.error("Error:", error);
-        }
+        })
+        
       };
   
   return (
@@ -82,7 +86,7 @@ export default function CreateProductForm({categories}:{
         </SelectContent>
       </Select>
           <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2  shadow-md" type="submit">
-            Create Product
+            {isPending?"Creating...":"Create Product"}
           </Button>
         </form>
     </div>

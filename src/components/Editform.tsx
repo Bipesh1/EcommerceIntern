@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { createCategory } from "@/app/actions/category";
 import { uploadImageToSupabase } from "@/app/actions/uploadimagetosupabase";
 import { Button } from "@/components/ui/button";
@@ -15,12 +15,12 @@ export default function Editform({category}:{
     }
 }) {
   const [image, setImage] = useState<File | null>(null);
-
+  const [isPending,startTransition]= useTransition()
   const [name, setName] = useState<string>(category.name)
 
-  const handleSubmit = async (formData: FormData) => {
-    try {
-        const formData = new FormData();
+  const handleSubmit = (formData: FormData) => {
+    startTransition(async()=>{
+      try {
         formData.set("name", name);
   
         // If a new image is selected, upload  and add it to the form data
@@ -36,6 +36,9 @@ export default function Editform({category}:{
       } catch (error) {
         console.error("Error:", error);
       }
+    })
+    
+    
   };
 
   return (
@@ -69,7 +72,7 @@ export default function Editform({category}:{
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 shadow-md"
           type="submit"
         >
-          Update Category
+          {isPending?"Updating...":"Update Category"}
         </Button>
       </form>
     </div>
