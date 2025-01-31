@@ -4,13 +4,10 @@ import { products} from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import React from 'react'
 
-export default async function EditProduct({params}:{
-    params:{
-        id: string
-    }
-}) {
+export default async function EditProduct({params}: {params: Promise<{ id: string }>}) {
    
-    const productId= Number(params.id)
+    const { id } = await params;
+    const productId= Number(id)
     const {db}= await dbconfig()
     const [productData]= await db.select().from(products).where(eq(products.id,productId))
     return (

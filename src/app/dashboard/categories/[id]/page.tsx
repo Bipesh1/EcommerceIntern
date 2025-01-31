@@ -4,14 +4,11 @@ import { eq } from "drizzle-orm";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Productcard from "@/components/Productcard";
-export default async function CategoryProducts({params}:{
-    params:{
-        id: string
-    }
-}
+export default async function CategoryProducts({params}: {params: Promise<{ id: string }>}
 ){
 
-const categoryId= Number(params.id)
+const {id}= await params
+const categoryId= Number(id)
 const {db}= await dbconfig()
 const productsList= await db.select().from(products).where(eq(products.categoryId, categoryId))
 console.log(productsList)
