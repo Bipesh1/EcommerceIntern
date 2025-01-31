@@ -11,5 +11,6 @@ export async function editCategory(formData:FormData,id:number) {
 
   await db.update(categories).set({ name, imageUrl:image_url }).where(eq(categories.id,id));
   revalidatePath("/dashboard/categories")
+  revalidatePath("/dashboard/allproducts/create")
 
 }
