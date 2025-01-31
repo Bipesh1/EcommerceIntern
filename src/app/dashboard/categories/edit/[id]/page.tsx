@@ -9,8 +9,7 @@ export default async function Edit({params}:{
         id: string
     }
 }) {
-    const {id}= await params
-    const categoryId= Number(id)
+    const categoryId= Number(params.id)
     const {db}= await dbconfig()
     const [categoryData]= await db.select().from(categories).where(eq(categories.id,categoryId))
     

@@ -10,8 +10,8 @@ export default async function CategoryProducts({params}:{
     }
 }
 ){
-const {id}= await params
-const categoryId= Number(id)
+
+const categoryId= Number(params.id)
 const {db}= await dbconfig()
 const productsList= await db.select().from(products).where(eq(products.categoryId, categoryId))
 console.log(productsList)
