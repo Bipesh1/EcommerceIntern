@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Categorycard from "@/components/Categorycard";
 
+export const runtime = "nodejs";
+
 export default async function CreateCategoryPage() {
   const { db } = await dbconfig();
   const categorieslist = await db.select().from(categories);
