@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Productcard from "@/components/Productcard";
 
-export const runtime = "nodejs";
+
 
 export default async function AllProductsPage() {
   const { db } = await dbconfig();
