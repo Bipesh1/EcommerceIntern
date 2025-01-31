@@ -1,10 +1,7 @@
-// app/dashboard/products/page.tsx
 import { dbconfig } from "@/db/initSupabase";
 import { products } from "@/db/schema";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
 import Productcard from "@/components/Productcard";
 
 export default async function AllProductsPage() {

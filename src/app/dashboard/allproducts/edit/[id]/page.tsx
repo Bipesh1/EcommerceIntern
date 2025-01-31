@@ -1,4 +1,3 @@
-import Editform from '@/components/Editform'
 import EditProductForm from '@/components/Editproductform'
 import { dbconfig } from '@/db/initSupabase'
 import { products,categories } from '@/db/schema'

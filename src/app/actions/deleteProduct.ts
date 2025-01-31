@@ -4,7 +4,7 @@ import { dbconfig } from "@/db/initSupabase";
 import { products } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { createClient } from '@supabase/supabase-js';
+
 
 export async function deleteProduct(id: number) {
   try {

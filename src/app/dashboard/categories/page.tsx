@@ -1,10 +1,7 @@
-// app/dashboard/categories/page.tsx
 import { dbconfig } from "@/db/initSupabase";
 import { categories } from "@/db/schema";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from 'lucide-react';
 import Categorycard from "@/components/Categorycard";
 
 export default async function CreateCategoryPage() {

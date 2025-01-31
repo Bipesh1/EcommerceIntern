@@ -1,9 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { SignInButton} from "@clerk/nextjs";
 
 
 export default function Home() {

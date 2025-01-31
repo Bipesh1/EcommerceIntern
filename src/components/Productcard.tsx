@@ -5,7 +5,6 @@ import { Button } from './ui/button'
 import Image from 'next/image'
 import { Trash2 } from 'lucide-react'
 import { deleteProduct } from '@/app/actions/deleteProduct'
-import { revalidatePath } from 'next/cache'
 
 export default function Productcard({
   product,

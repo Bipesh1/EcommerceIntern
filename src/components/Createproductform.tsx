@@ -15,7 +15,6 @@ export default function CreateProductForm({categories}:{
 }) {
    
      const [image, setImage] = useState<File | null>(null);
-     const [selectedcategory,setSelectedCategory]=useState<string>("")
      const [isPending,startTransition]= useTransition()
 
       const handleSubmit = (formData: FormData) => {
@@ -73,7 +72,7 @@ export default function CreateProductForm({categories}:{
             required
           />
           {/* Category Dropdown */}
-      <Select onValueChange={(value) => setSelectedCategory(value)} name="category_id" >
+      <Select>
         <SelectTrigger>
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>

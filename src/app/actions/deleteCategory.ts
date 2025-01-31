@@ -4,7 +4,7 @@ import { dbconfig } from "@/db/initSupabase";
 import { categories } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { createClient } from '@supabase/supabase-js';
+
 
 export async function deleteCategory(id: number) {
   try {

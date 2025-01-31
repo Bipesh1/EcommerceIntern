@@ -1,9 +1,7 @@
 import { dbconfig } from "@/db/initSupabase";
 import { products } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import Productcard from "@/components/Productcard";
 export default async function CategoryProducts({params}:{
